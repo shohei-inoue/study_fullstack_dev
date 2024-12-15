@@ -12,3 +12,23 @@
 cd dev
 docker-compose up
 ```
+
+## ディレクトリ構成
+```
+study_fullstack_dev
+  |
+  | - dev # sql練習用
+  |    |
+  |    | - docker-compose.yml
+  | 
+  | - sakila-db # sqlの公式dbの1つ
+  |
+  | - src
+       |
+       | - dev
+            |
+            | - app
+                 |
+                 | - backend
+                 | - frontend
+```

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "api.hello_db"
 ]
 
 MIDDLEWARE = [
@@ -74,12 +75,25 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": 'django.db.backends.mysql',
+#         "NAME": BASE_DIR / "db.mysql",
+#     }
+# }
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'app', # 使用するDBの設定
+    'USER': 'root',
+    'PASSWORD': 'password',
+    'HOST': 'host.docker.internal', # ホストの設定
+    # 'HOST': '127.17.0.1', # ホストの設定
+    'PORT': 53306, # ポートの設定
+    'ATOMIC_REQUESTS': True # 処理の最後まで到達した場合にデータベースをcommit, Falseの場合はテーブル操作するたびcommit
+  }
 }
+
 
 
 # Password validation
@@ -140,3 +154,6 @@ LOGGING = {
     }
   }
 }
+
+# セッションをデータベースに保存する設定（デフォルト）
+# SESSION_ENGINE = 'django.contrib.sessions.backends.db'

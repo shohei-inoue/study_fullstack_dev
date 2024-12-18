@@ -2,7 +2,7 @@ from .base import *
 
 DATABASES = {
   'default': {
-    'ENGINE': 'django.db.backends.mysql', # MySQLを使用することを記述
+    'ENGINE': 'django.db.backends.mysql',
     'NAME': 'app', # 使用するDBの設定
     'USER': 'root',
     'PASSWORD': 'password',

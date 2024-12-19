@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "type": "卸し",
+    "date": "2023-04-03 18:54:13",
+    "unit": 6900,
+    "quality": 2,
+    "price": 13000,
+    "inventory": 390
+  },
+  {
+    "id": 2,
+    "type": "卸し",
+    "date": "2023-04-03 18:54:13",
+    "unit": 6900,
+    "quality": 2,
+    "price": 13000,
+    "inventory": 390
+  },
+  {
+    "id": 3,
+    "type": "卸し",
+    "date": "2023-04-03 18:54:13",
+    "unit": 6900,
+    "quality": 2,
+    "price": 13000,
+    "inventory": 390
+  },
+  {
+    "id": 4,
+    "type": "卸し",
+    "date": "2023-04-03 18:54:13",
+    "unit": 6900,
+    "quality": 2,
+    "price": 13000,
+    "inventory": 390
+  }
+]

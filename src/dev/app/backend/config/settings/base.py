@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from timedelta import datetime
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "api.hello_db"
+    "api.hello_db",
+    "api.inventory",
 ]
 
 MIDDLEWARE = [
@@ -154,6 +157,22 @@ LOGGING = {
     }
   }
 }
+
+REST_FRAMEWORK = {
+  'DEFAULT_AUTHENTICATION_CLASSES': (
+    'api.inventory.authentication.CustomJWTAuthentication',
+    'rest_framework_simplejwt.authentication.JWTAuthentication',
+  ),
+  'DEFAULT_PERMISSION _CLASSES': ['rest_framework.permissions.IsAuthenticated']
+}
+
+SIMPLE_JWT = {
+  'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=1),
+  'REFRESH_TOKEN _LIFETIME': datetime.timedelta(days=30),
+  'UPDATE_LAST_LOGIN': True,
+}
+
+COOKIE_TIME = 60 * 60 * 12
 
 # セッションをデータベースに保存する設定（デフォルト）
 # SESSION_ENGINE = 'django.contrib.sessions.backends.db'

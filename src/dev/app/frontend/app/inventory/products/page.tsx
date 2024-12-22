@@ -1,8 +1,8 @@
 'use client'
 
+import axios from "../../../pulgins/axios";
 import { useForm } from "react-hook-form"
 import React, { useEffect, useState } from "react"
-import productsData from "./sample/dummy_products.json"
 import Link from "next/link"
 import { Alert, AlertColor, Box, Button, Paper, Snackbar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material"
 import { GridAddIcon } from "@mui/x-data-grid"
@@ -37,7 +37,11 @@ export default function Page() {
   };
 
   useEffect(() => {
-    setData(productsData);
+    axios.get('/api/product')
+    .then((res) => res.data)
+    .then((data) => {
+      setData(data);
+    })
   }, [open]);
 
   const [id, setId] = useState<number | null>(0);
@@ -84,7 +88,9 @@ export default function Page() {
   }
 
   const handleAdd = (data: ProductDataProps) => {
-    result('success', '商品が登録されました');
+    axios.post("api/inventory/products", data).then((response) => {
+      result('success', '商品が登録されました');
+    })
     setId(0);
   }
 
@@ -105,12 +111,16 @@ export default function Page() {
   };
 
   const handleEdit = (data: ProductDataProps) => {
-    result('success', '商品が更新されました');
+    axios.put(`api/inventory/products/${data.id}`, data).then((respose) => {
+      result('success', '商品が更新されました');
+    })
     setId(0);
   };
 
   const handleDelete = (id: number) => {
-    result('success', '商品が削除されました')
+    axios.delete(`/api/inventory/products/${id}`).then((response) => {
+      result('success', '商品が削除されました')
+    })
     setId(0);
   };
 
@@ -135,6 +145,15 @@ export default function Page() {
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
+            <TableRow>
+              <TableCell>商品ID</TableCell>
+              <TableCell>商品名</TableCell>
+              <TableCell>単価</TableCell>
+              <TableCell>説明</TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
+            </TableRow>
+          </TableHead>
             <TableBody>
               {id === null ? (
                 <TableRow>
@@ -199,7 +218,6 @@ export default function Page() {
                 )
               ))}
             </TableBody>
-          </TableHead>
         </Table>
       </TableContainer>
       </Box>

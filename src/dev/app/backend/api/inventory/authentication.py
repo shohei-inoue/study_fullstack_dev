@@ -6,6 +6,6 @@ class CustomJWTAuthentication(JWTAuthentication):
     request.META['HTTP_AUTHORIZATION'] = '{header_type}{access_token}'.format(
       header_type="Bearer", access_token=token
     )
-    refresh = request.COOKIES .get('refresh')
+    refresh = request.COOKIES.get('refresh')
     request.META['HTTP_REFRESH_TOKEN'] = refresh
     return super().get_header(request)
